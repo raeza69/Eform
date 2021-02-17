@@ -1,73 +1,52 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTable } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogBoxComponent } from 'src/app/dialog-box/dialog-box.component';
-
-
-export interface UsersData {
-  name: string;
-  id: number;
-}
-
-const ELEMENT_DATA: UsersData[] = [
-  {id: 1560608769632, name: 'Artificial Intelligence'},
-  {id: 1560608796014, name: 'Machine Learning'},
-  {id: 1560608787815, name: 'Robotic Process Automation'},
-  {id: 1560608805101, name: 'Blockchain'}
-];
-
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { MatSort } from '@angular/material/sort';
+import { MatPaginator } from '@angular/material/paginator';
 @Component({
   selector: 'app-pendingverification',
   templateUrl: './pendingverification.component.html',
   styleUrls: ['./pendingverification.component.scss']
 })
-export class PendingverificationComponent {
-  displayedColumns: string[] = ['id', 'name', 'action'];
-  dataSource = ELEMENT_DATA;
+export class PendingverificationComponent implements OnInit {
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  applicationList;
+  filterApplicationList;
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'applyPosition', 'availableStartDate', 'currentEmploymentStatus', 'action'];
+  dataSource = new MatTableDataSource();
 
-  @ViewChild(MatTable,{static:true}) table: MatTable<any>;
+  @ViewChild(MatTable, { static: true }) table: MatTable<any>;
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog,
+    protected http: HttpClient) { }
 
-  openDialog(action,obj) {
-    obj.action = action;
-    const dialogRef = this.dialog.open(DialogBoxComponent, {
-      width: '250px',
-      data:obj
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if(result.event == 'Add'){
-        this.addRowData(result.data);
-      }else if(result.event == 'Update'){
-        this.updateRowData(result.data);
-      }else if(result.event == 'Delete'){
-        this.deleteRowData(result.data);
-      }
-    });
+  ngOnInit() {
+    this.getApplication();
   }
 
-  addRowData(row_obj){
-    var d = new Date();
-    this.dataSource.push({
-      id:d.getTime(),
-      name:row_obj.name
-    });
-    this.table.renderRows();
-    
+  getApplication() {
+    return this.http
+      .get<any>(environment.baseApiUrl + 'application').subscribe(res => {
+        this.applicationList = res.filter(x => x.status === 'submit');
+        this.dataSource = new MatTableDataSource(this.applicationList);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      });
   }
-  updateRowData(row_obj){
-    this.dataSource = this.dataSource.filter((value,key)=>{
-      if(value.id == row_obj.id){
-        value.name = row_obj.name;
-      }
-      return true;
-    });
-  }
-  deleteRowData(row_obj){
-    this.dataSource = this.dataSource.filter((value,key)=>{
-      return value.id != row_obj.id;
-    });
+
+  openDialog(e, a) {
+    let request = {
+      ...a,
+      status: e
+    };
+    return this.http
+      .post<any>(environment.baseApiUrl + 'application/updateApplication', request).subscribe(res => {
+        this.getApplication();
+      });
   }
 }
 

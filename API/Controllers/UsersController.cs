@@ -29,5 +29,19 @@ namespace API.Controllers
         {
             return await _context.Users.FindAsync(id);
         }
+
+        [HttpPost("[action]")]
+        public async Task<ActionResult<int>> Login([FromBody] AppUser appUser)
+        {
+            return await _context.Users.Where(x => x.UserName == appUser.UserName && x.Password == appUser.Password).CountAsync();
+        }
+
+        [HttpPost("[action]")]
+        public async Task<ActionResult<int>> AddUser([FromBody] AppUser appUser)
+        {
+            var result = await _context.Users.AddAsync(appUser);
+            _context.SaveChanges();
+            return result.Entity.Id;
+        }
     }
 }

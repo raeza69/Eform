@@ -8,16 +8,16 @@
 
 <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="20px" class="stats-cards">
     <mat-card fxFlex="25">
-        <app-widget-card label="Draft" total="0"></app-widget-card>
+        <app-widget-card label="Draft" [total]="totalDraft"></app-widget-card>
     </mat-card>
     <mat-card fxFlex="25">
-        <app-widget-card label="Submitted" total="0"></app-widget-card>
+        <app-widget-card label="Submitted" [total]="totalSubmit"></app-widget-card>
     </mat-card>
     <mat-card fxFlex="25">
-        <app-widget-card label="Approved" total="0"></app-widget-card>
+        <app-widget-card label="Approved" [total]="totalApprove"></app-widget-card>
     </mat-card>
     <mat-card fxFlex="25">
-        <app-widget-card label="Returned" total="0"></app-widget-card>
+        <app-widget-card label="Returned" [total]="totalReturn"></app-widget-card>
     </mat-card>
 </div>
 
@@ -26,4 +26,3 @@
 <mat-divider></mat-divider>
 
 <br>
-

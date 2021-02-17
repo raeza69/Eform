@@ -1,8 +1,10 @@
 
-export interface Article {
+export interface Application {
   id: number;
-  name: string;
-  position: string;
-  date: string;
-  action: string;
+  firstName: string;
+  lastName: string;
+  applyPosition: string;
+  availableStartDate: string;
+  currentEmploymentStatus: string;
+  status: string;
 } 
