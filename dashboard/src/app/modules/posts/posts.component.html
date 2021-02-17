@@ -1,0 +1,149 @@
+<div class="container">
+    <h3 id="branding" class="text-center">Be a part of our amazing team</h3>
+
+    <div class="row">
+      <div class="col-md-12 order-md-1">
+        <form #jobForm="ngForm" (ngSubmit)="jobSubmit(jobForm)">
+          <div class="row">
+            <div class="col-md-6 mb-2">
+              <label for="firstName">First name</label>
+              <input 
+                ngModel
+                #firstName="ngModel"
+                name="firstName"
+                type="text" 
+                class="form-control" 
+                id="firstName" 
+                placeholder="" 
+                value="" 
+                (change)="onChange(firstName)"
+                required
+                minlength="4"
+                >
+
+              <!-- invalid - not a valid control
+                   dirty - When a value changes
+                   touched - when it receives focus -->
+              <div 
+                *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                class="alert alert-danger">
+                
+                <div *ngIf="firstName.errors.required">First name is required</div>
+                <div *ngIf="firstName.errors.minlength">First name should be {{ firstName.errors.minlength.requiredLength }} characters in length.</div>
+              </div>
+            </div>              
+            <div class="col-md-6 mb-2">
+              <label for="lastName">Last name</label>
+              <input 
+                type="text" 
+                class="form-control" 
+                id="lastName" 
+                placeholder="" 
+                value="" >
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-12 mb-1">
+              <label for="email">EMail<span>*</span></label>
+              <input type="text" class="form-control" id="email" placeholder="" value="" >
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-12 mb-1">
+              <label for="jobPosition">What position are you applying for<span>*</span></label>
+              <select 
+                ngModel
+                name="jobPosition"
+                #jobPos="ngModel"
+                class="form-control" 
+                id="jobPosition"
+                (change)="onChange(jobPos)"
+                required>
+                <option value=""></option>
+                <option *ngFor="let pos of"
+                  [ngValue]="pos">
+                  {{ pos.name }}
+                </option>                  
+              </select> 
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-12 mb-1">
+              <label for="availableStartDate">Available Start Date</label>
+              
+              <div class="input-group mb-2">
+               
+                <input type="text" 
+                    class="form-control" 
+                    id="inlineFormInputGroup" 
+                    placeholder=""
+                    ngbDatepicker 
+                    #d="ngbDatepicker"
+                    (dateSelect)="($event)"
+                    (click)="d.toggle()">
+  
+                <div class="input-group-append">
+                  <button 
+                    class="btn btn-outline-secondary calendar" 
+                    (click)="d.toggle()"                    
+                    type="button"></button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+  
+          <div class="row">
+            <div class="col-md-12">
+              <label>What is your current employement status</label>
+            </div>
+            
+            <div class="col-md-4 mb-1">
+              <div class="form-check">
+               <input class="form-check-input" type="radio" value="" id="invalidCheck2"> 
+               <label class="form-check-label" for="invalidCheck2">
+                EMPLOYED
+               </label>
+             </div>
+           </div>
+
+            <div class="col-md-4 mb-1">
+              <div class="form-check">
+               <input class="form-check-input" type="radio" value="" id="invalidCheck2"> 
+               <label class="form-check-label" for="invalidCheck2">
+                UNEMPLOYED
+               </label>
+             </div>
+           </div>
+
+           <div class="col-md-4 mb-1">
+            <div class="form-check">
+             <input class="form-check-input" type="radio" value="" id="invalidCheck2"> 
+             <label class="form-check-label" for="invalidCheck2">
+               SELF EMPLOYED
+             </label>
+           </div>
+         </div>
+
+         <div class="col-md-4 mb-1">
+          <div class="form-check">
+           <input class="form-check-input" type="radio" value="" id="invalidCheck2"> 
+           <label class="form-check-label" for="invalidCheck2">
+             STUDENT
+           </label>
+         </div>
+       </div>
+      </div>
+  
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" style="float: right;" mat-flat-button color="secondary">Save as Draft</button>
+            <button type="button" style="float: right;" mat-flat-button color="primary">Submit</button>
+            
+          </div>         
+        </form>
+      </div>
+    </div>
+  </div>
