@@ -23,11 +23,11 @@ export class PostsComponent implements OnInit {
   ];
 
   jobPositionList = [
-    { id: 1, name: 'Awesome position 1' },
-    { id: 2, name: 'Awesome position 2' },
-    { id: 3, name: 'Awesome position 3' },
-    { id: 4, name: 'Awesome position 4' },
-    { id: 5, name: 'Awesome position 5' }
+    { id: 1, name: 'Software Engineer' },
+    { id: 2, name: 'Security & Fraud Specialist' },
+    { id: 3, name: 'Business Technology Specialist' },
+    { id: 4, name: 'Risk Manager' },
+    { id: 5, name: 'Compliance Officer' }
   ];
 
   constructor(

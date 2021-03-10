@@ -22,14 +22,14 @@ export class AreaComponent implements OnInit {
           type: 'area'
       },
       title: {
-          text: 'Random DATA'
+          text: 'Total Bank Rakyat Employees By Branch in Malaysia'
       },
       subtitle: {
           text: 'Demo'
       },
       tooltip: {
           split: true,
-          valueSuffix: ' millions'
+          valueSuffix: ' hundreds'
       },
       credits: {
         enabled: false,
@@ -38,19 +38,19 @@ export class AreaComponent implements OnInit {
         enabled: true,
       },
       series: [{
-          name: 'Asia',
+          name: 'Menara Bank Rakyat',
           data: [502, 635, 809, 947, 1402, 3634, 5268]
       }, {
-          name: 'Africa',
+          name: 'Kuantan',
           data: [106, 107, 111, 133, 221, 767, 1766]
       }, {
-          name: 'Europe',
+          name: 'Taiping',
           data: [163, 203, 276, 408, 547, 729, 628]
       }, {
-          name: 'America',
+          name: 'Desa Sri Hartamas',
           data: [18, 31, 54, 156, 339, 818, 1201]
       }, {
-          name: 'Oceania',
+          name: 'Bera',
           data: [2, 2, 2, 6, 13, 30, 46]
       }]
     };       

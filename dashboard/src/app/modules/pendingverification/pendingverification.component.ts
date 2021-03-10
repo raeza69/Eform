@@ -48,5 +48,20 @@ export class PendingverificationComponent implements OnInit {
         this.getApplication();
       });
   }
+
+  Searchname(value) {
+    console.log("test");
+    this.filterApplicationList = this.applicationList;
+    this.filterApplicationList = this.filterApplicationList.filter(x => x.firstName === value);
+    console.log(this.filterApplicationList);
+    this.dataSource = new MatTableDataSource(this.filterApplicationList);
+    this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }
 

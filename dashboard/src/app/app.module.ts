@@ -23,7 +23,16 @@ import { PendingverificationComponent } from './modules/pendingverification/pend
 import { DialogBoxComponent } from './dialog-box/dialog-box.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
+import { CalendarComponent } from './modules/calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular'; 
+import interactionPlugin from '@fullcalendar/interaction';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import { LeadsComponent } from './modules/leads/leads.component';
 
+FullCalendarModule.registerPlugins([ // register FullCalendar plugins
+  dayGridPlugin,
+  interactionPlugin
+]);
 
 @NgModule({
   declarations: [
@@ -32,9 +41,9 @@ import { HttpClientModule } from '@angular/common/http';
     PostsComponent,
     LoginComponent,
     PendingverificationComponent,
-    DialogBoxComponent
-
-
+    DialogBoxComponent,
+    CalendarComponent,
+    LeadsComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,9 +63,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatToolbarModule,
     MatDialogModule,
-    HttpClientModule
-
-
+    HttpClientModule,
+    FullCalendarModule // for FullCalendar!
 
   ],
   providers: [

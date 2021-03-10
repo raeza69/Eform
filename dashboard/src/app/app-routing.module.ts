@@ -7,8 +7,8 @@ import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { PendingverificationComponent } from './modules/pendingverification/pendingverification.component';
 import { PostsComponent } from './modules/posts/posts.component';
 import { AuthGuardService } from './shared/auth-guard.service';
-
-
+import { CalendarComponent } from './modules/calendar/calendar.component';
+import { LeadsComponent } from './modules/leads/leads.component';
 const routes: Routes = [
   {
     path: 'login',
@@ -29,6 +29,12 @@ const routes: Routes = [
     }, {
       path: 'pendingverification',
       component: PendingverificationComponent
+    }, {
+      path: 'calendar',
+      component: CalendarComponent
+    }, {
+      path: 'leads',
+      component: LeadsComponent
     }],
     canActivate: [AuthGuardService]
   }];

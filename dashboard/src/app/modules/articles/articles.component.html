@@ -1,3 +1,6 @@
+<div class="container">
+  <h3 id="branding" class="text-center">Applicant Information</h3>
+
 <div class="btn-group" role="group" aria-label="Basic example">
   <button type="button" mat-flat-button color="primary" (click)="filter('draft')">Draft</button>
   <button type="button" mat-flat-button color="primary" (click)="filter('submit')">Submitted</button>
@@ -6,9 +9,13 @@
 </div>
 <br>
 <div class="input-group">
-  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-    aria-describedby="search-addon" />
-  <button type="button" mat-flat-button color="primary">search</button>
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search..." #input>
+  </mat-form-field>
+  <!-- <input  type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+    aria-describedby="search-addon" /> -->
+  <!-- <button type="button" mat-flat-button color="primary" (click)="Searchname({{searchText}})">search</button> -->
 </div>
 <br>
 <div class="mat-elevation-z8">
